@@ -22,12 +22,12 @@ class TI:
 
     def get_data(self) -> List:
         base_url = self._configuration["base_url"]
-        print("base_url", base_url)
+
         try:
-            content = self._retriever.download_json(base_url)
+            content = self._retriever.download_json(base_url, "cpi")
             print("content", content)
-        except DownloadError:
-            logger.error(f"Could not get data from {self.data_url}")
+        except DownloadError as e:
+            logger.error(f"Could not get data from {self.data_url} {e}")
             return []
 
         return content

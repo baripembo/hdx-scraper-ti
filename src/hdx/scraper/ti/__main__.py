@@ -57,8 +57,8 @@ def main(
 
             ti = TI(configuration, retriever, temp_dir)
 
-            countries = ti.get_data()
-            print("countries", countries)
+            data = ti.get_data()
+            print("data", data)
 
             # dataset.update_from_yaml(
             #     path=join(
