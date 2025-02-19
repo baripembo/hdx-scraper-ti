@@ -1,0 +1,10 @@
+license_id: cc-by
+methodology: Other
+caveats: None
+dataset_source: Transparency International
+package_creator: HDX Data Systems Team
+private: False
+maintainer: "b81807158748c46734d7d8b574bd1d9e" # berylnyamgeroh
+owner_org:  "e0035cc4-87fb-443c-8045-4e9f7463a67c" # transparencyinternational
+data_update_frequency: 365
+notes: dataset notes
