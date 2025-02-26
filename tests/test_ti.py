@@ -47,6 +47,7 @@ class Testti:
                     use_saved=True,
                 )
                 print(retriever)
-
+                #
                 # dataset.update_from_yaml(
-                # path=join(config_dir, "hdx_dataset_static.yaml"))
+                #     path=join(config_dir, "hdx_dataset_static.yaml")
+                # )

@@ -1,6 +1,6 @@
 # Collector specific configuration
 base_url: https://www.transparency.org/en/api/latest/cpi
-description: Corruption Perception Index score and rank per country in CSV format.
+description: Corruption Perception Index [year] score and rank per country in CSV format.
 title: Corruption Perceptions Index
 tags:
   - climate hazards
@@ -9,3 +9,8 @@ tags:
   - human rights
   - peacekeeping
   - people in need-pin
+
+showcase_title: Corruption Perceptions Index 2024 Report
+showcase_notes: The 2024 Corruption Perceptions Index (CPI) shows that corruption is a dangerous problem in every part of the world, but change for the better is happening in many countries.
+showcase_url: https://images.transparencycdn.org/images/Report-CPI-2024-English.pdf
+showcase_image_url: https://images.transparencycdn.org/images/CPI2024_Map-plus-Index_EN_2025-02-06-134924_tnnb.jpg

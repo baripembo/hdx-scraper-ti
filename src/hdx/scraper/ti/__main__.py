@@ -53,24 +53,22 @@ def main(
             #
             # Steps to generate dataset
             #
-
             ti = TI(configuration, retriever, temp_dir)
-            datasets, showcase = ti.generate_datasets()
+            dataset, showcase = ti.generate_dataset()
 
-            for dataset in datasets:
-                dataset.update_from_yaml(
-                    path=join(dirname(__file__), "config", "hdx_dataset_static.yaml")
-                )
+            dataset.update_from_yaml(
+                path=join(dirname(__file__), "config", "hdx_dataset_static.yaml")
+            )
 
-                dataset.create_in_hdx(
-                    remove_additional_resources=True,
-                    match_resource_order=False,
-                    hxl_update=False,
-                    updated_by_script=_UPDATED_BY_SCRIPT,
-                    batch=info["batch"],
-                )
-                showcase.create_in_hdx()
-                showcase.add_dataset(dataset)
+            dataset.create_in_hdx(
+                remove_additional_resources=True,
+                match_resource_order=False,
+                hxl_update=False,
+                updated_by_script=_UPDATED_BY_SCRIPT,
+                batch=info["batch"],
+            )
+            showcase.create_in_hdx()
+            showcase.add_dataset(dataset)
 
 
 if __name__ == "__main__":
