@@ -26,8 +26,8 @@ _UPDATED_BY_SCRIPT = "HDX Scraper: Transparency International"
 
 
 def main(
-    save: bool = True,
-    use_saved: bool = False,
+    save: bool = False,
+    use_saved: bool = True,
 ) -> None:
     """Generate datasets and create them in HDX
 
@@ -38,8 +38,6 @@ def main(
     Returns:
         None
     """
-    configuration = Configuration.read()
-
     with wheretostart_tempdir_batch(folder=_USER_AGENT_LOOKUP) as info:
         temp_dir = info["folder"]
         with Download() as downloader:
@@ -51,33 +49,34 @@ def main(
                 save=save,
                 use_saved=use_saved,
             )
+            configuration = Configuration.read()
             #
             # Steps to generate dataset
             #
 
             ti = TI(configuration, retriever, temp_dir)
+            datasets, showcase = ti.generate_datasets()
 
-            data = ti.get_data()
-            print("data", data)
+            for dataset in datasets:
+                dataset.update_from_yaml(
+                    path=join(dirname(__file__), "config", "hdx_dataset_static.yaml")
+                )
 
-            # dataset.update_from_yaml(
-            #     path=join(
-            #         dirname(__file__), "config", "hdx_dataset_static.yaml"
-            #     )
-            # )
-            # dataset.create_in_hdx(
-            #     remove_additional_resources=True,
-            #     match_resource_order=False,
-            #     hxl_update=False,
-            #     updated_by_script=_UPDATED_BY_SCRIPT,
-            #     batch=info["batch"],
-            # )
+                dataset.create_in_hdx(
+                    remove_additional_resources=True,
+                    match_resource_order=False,
+                    hxl_update=False,
+                    updated_by_script=_UPDATED_BY_SCRIPT,
+                    batch=info["batch"],
+                )
+                showcase.create_in_hdx()
+                showcase.add_dataset(dataset)
 
 
 if __name__ == "__main__":
     facade(
         main,
-        hdx_site="dev",
+        hdx_site="stage",
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yaml"),
         user_agent_lookup=_USER_AGENT_LOOKUP,
         project_config_yaml=join(dirname(__file__), "config", "project_configuration.yaml"),

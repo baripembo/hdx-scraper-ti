@@ -1,2 +1,11 @@
 # Collector specific configuration
 base_url: https://www.transparency.org/en/api/latest/cpi
+description: Corruption Perception Index score and rank per country in CSV format.
+title: Corruption Perceptions Index
+tags:
+  - climate hazards
+  - development
+  - environment
+  - human rights
+  - peacekeeping
+  - people in need-pin
